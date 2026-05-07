@@ -6,7 +6,7 @@ export function getSupabase(): SupabaseClient | null {
   if (!_client) {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key || url === 'placeholder' || url.includes('your_supabase')) {
+    if (!url || !key || url.trim() === '' || url === 'placeholder' || url.includes('your_supabase') || !url.startsWith('http')) {
       console.warn('[Molofu6] Supabase env vars not set — running in demo mode');
       return null;
     }
