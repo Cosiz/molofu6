@@ -24,7 +24,7 @@ export function getSupabase(): SupabaseClient | null {
 export const supabase = new Proxy({} as SupabaseClient, {
   get(_target, prop) {
     const client = getSupabase();
-    if (!client) {
+    if (!client || (prop === 'auth' && !client.auth)) {
       // Return no-op for demo mode
       if (prop === 'auth') {
         return {
