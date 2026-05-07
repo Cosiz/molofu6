@@ -44,6 +44,6 @@ export const supabase = new Proxy({} as SupabaseClient, {
       }
       return () => ({ data: null, error: null });
     }
-    return (client as any)[prop];
+    return (client as any)?.[prop];
   },
 });
